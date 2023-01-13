@@ -8,6 +8,7 @@ Why is there ui.html? Because import was not possible in code.ts
 
 Current issue: Wrong ressults (incorrect hyphenation, "-" in the wrong places)
 
+Reason (probably): Font not being loaded properly
 
 Below are the steps to get your plugin running. You can also find instructions at:
 
