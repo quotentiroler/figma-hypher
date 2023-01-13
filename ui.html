@@ -1,0 +1,52 @@
+<h2>DE Hyphenation</h2>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter">
+<div style="text-align: justify">
+  <span id="loader" style="font-family: Inter;">I am used for loading</span>
+  <br>
+  <br>
+  <span id="content" style="font-family: Inter">Waiting for text...</span>
+</div>
+<script type="module">
+  window.onload = await function () {
+    document.getElementById("loader").innerHTML = "Font loaded";
+  }
+  import texLinebreak from 'https://esm.sh/tex-linebreak@0.6.0/';
+  import hypher from 'https://esm.sh/hyphenation.de';
+  const { createHyphenator, layoutText } = texLinebreak
+  const hyphenate = createHyphenator(hypher);
+  var result = "";
+  function measureText(cssFont, text) {
+    let measureCtx;
+    let canvas;
+    canvas = document.createElement('canvas');
+    measureCtx = canvas.getContext('2d');
+    measureCtx.font = cssFont;
+    console.log(measureCtx.font)
+    return measureCtx.measureText(text).width;
+  }
+  window.addEventListener('message', (event) => {
+    const measure = word => measureText('400 10px Inter', word)
+    document.getElementById("content").innerHTML = event.data.pluginMessage.text;
+    const { items, positions } = layoutText(event.data.pluginMessage.text, event.data.pluginMessage.width, measure, hyphenate)
+    // console.log(items, positions)
+    const stack = [];
+    for (let i = items.length - 1; i >= 0; i--) {
+      if (items[i].type == 'glue')
+        stack.push(i)
+    }
+    positions.forEach(pos => {
+      //console.log(pos)
+      if (pos.item == stack[stack.length - 1] + 1) {
+        result += items[stack[stack.length - 1]].text
+        stack.pop();
+      }
+      const item = items[pos.item]
+      //console.log(item)
+      const text = item.type === 'box' ? item.text : '-';
+      result += text;
+      // console.log(result)
+    });
+    parent.postMessage({ pluginMessage: { type: 'text', result, } }, '*')
+  }, false)
+</script>
