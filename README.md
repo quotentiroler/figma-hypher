@@ -1,3 +1,14 @@
+Plugin workflow:
+
+Select text box, run plugin.
+
+Expected result: Correct hyphenation on width coming from figma API and hard coded font Inter, font-size 10px
+
+Why is there ui.html? Because import was not possible in code.ts
+
+Current issue: Wrong ressults (incorrect hyphenation, "-" in the wrong places)
+
+
 Below are the steps to get your plugin running. You can also find instructions at:
 
   https://www.figma.com/plugin-docs/setup/
