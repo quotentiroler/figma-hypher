@@ -1,14 +1,22 @@
-Plugin workflow:
+# Figma Hypher - Hyphenation plugin for Figma
 
-Select text box, run plugin.
+## Plugin workflow:
 
-Expected result: Correct hyphenation on width coming from figma API and hard coded font Inter, font-size 10px
+1. Select text box
+2. Run plugin.
 
-Why is there ui.html? Because import was not possible in code.ts
+**Expected result**: Correct hyphenation on width coming from figma API and hard coded font Inter, font-size 10px
 
-Current issue: Wrong ressults (incorrect hyphenation, "-" in the wrong places)
+Why is there ui.html? Because it is not possible to use "import" or "require" statements in code.ts due to figma.
 
-Reason (probably): Font not being loaded properly
+##Current issue:
+
+Wrong ressults (incorrect hyphenation, "-" in the wrong places)
+
+**Reason**: Well.. That's the question! My guess is that figma has some additional margin in a text box?
+
+
+---
 
 Below are the steps to get your plugin running. You can also find instructions at:
 
