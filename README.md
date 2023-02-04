@@ -11,7 +11,7 @@ Why is there ui.html? Because it is not possible to use "import" or "require" st
 
 ## Current issue:
 
-Wrong ressults (incorrect hyphenation, "-" in the wrong places)
+Wrong results (incorrect hyphenation, "-" in the wrong places)
 
 **Reason**: Well.. That's the question! My guess is that figma has some additional margin in a text box?
 
