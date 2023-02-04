@@ -9,7 +9,7 @@
 
 Why is there ui.html? Because it is not possible to use "import" or "require" statements in code.ts due to figma.
 
-##Current issue:
+## Current issue:
 
 Wrong ressults (incorrect hyphenation, "-" in the wrong places)
 
